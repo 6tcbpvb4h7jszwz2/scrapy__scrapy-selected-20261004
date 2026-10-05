@@ -64,7 +64,10 @@ jobs:
 
     - name: Run tests
       env: ${{ matrix.env }}
-      run: uvx --with tox-uv tox
+      run: >-
+        uvx --with tox-uv tox
+        -x "testenv.deps+=parsel==1.11.0"
+        -x "testenv.constrain_package_deps=true"
 
     - name: Upload coverage report
       if: ${{ matrix.coverage }}
